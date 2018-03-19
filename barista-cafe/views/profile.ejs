@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <title>Barista Cafe</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Local</h3>
+
+                <% if (user.local.email) { %>
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+
+                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
+                <% } else { %>
+                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
+                <% } %>
+
+            </div>
+        </div>
+        <h1 class="cafe">Jean Claude Cafe</h1>
+        <h2 class="cafe">Instructions</h2>
+        <p class="cafe">Enter you name and order in the search bars below,
+          then wait to be notified upon its completion</p>
+          <h4 class="cafe">Menu(only coffee's available)</h4>
+            <ul class="cafe">
+              <li>Americano</li>
+              <li>Caramel</li>
+              <li>Cappucino</li>
+              <li>Expresso</li>
+              <li>Latte</li>
+              <li>Mocha</li>
+              <li>Iced coffee</li>
+              <li>Iced Latte</li>
+            </ul>
+            <span class="cafe">want a muffin? take that shit to starbucks</span>
+            <h5>place ya rasclat orda!</h5>
+              <form action="/orders" method= "POST">
+              <fieldset>
+                <legend>Coffee - Small / Medium / Large</legend>
+                <label for="">Size </label>
+                <select class="Size" name="size">
+                  <option  value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
+                </select>
+
+              </fieldset>
+              <input type="text" name="name" value="" placeholder="Enter Name">
+              <input type="text" name="order" value="" placeholder="Enter Coffee Order">
+              <button type="submit" name="button">Submit Order</button>
+              </form>
+
+              <ul class="orders">
+              <% for(var i=0; i<orders.length; i++) {%>
+                <li class="order">
+                  <span><%= orders[i].name %></span>
+                  <span><%= orders[i].order %></span>
+                  <span><%= orders[i].size %></span>
+
+                  <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                  <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                </li>
+              <% } %>
+              </ul>
+
+          <script type="text/javascript" src="main.js"></script>
+
+</body>
+</html>
